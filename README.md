@@ -25,10 +25,7 @@ This repository contains a containerized environment that simulates a microservi
 
 ### Quick Start
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/SRE-Monitor.git
-   cd SRE-Monitor
-   ```
+  
 2. Launch the stack:
    ```bash
    docker-compose up --build -d
