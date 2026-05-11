@@ -1,0 +1,12 @@
+global:
+  scrape_interval: 10s # Scrape every 10s as requested
+  evaluation_interval: 10s
+
+scrape_configs:
+  - job_name: 'flask_app'
+    static_configs:
+      - targets: ['app:5000'] # 'app' is the docker service name
+
+  - job_name: 'health_check_script'
+    static_configs:
+      - targets: ['health_check:8000']

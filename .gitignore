@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Monitoring / Logs
+app/logs/*.log
+monitoring/prometheus/data/
+monitoring/grafana/data/
+
+# Docker
+.docker/
+*.tar
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store

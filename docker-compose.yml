@@ -1,0 +1,61 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: app.Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app/logs:/app/logs
+    networks:
+      - monitoring
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - monitoring
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    networks:
+      - monitoring
+
+  loki:
+    image: grafana/loki:latest
+    command: -config.file=/etc/loki/local-config.yaml
+    volumes:
+      - ./monitoring/loki/loki-config.yml:/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+    networks:
+      - monitoring
+
+  promtail:
+    image: grafana/promtail:latest
+    volumes:
+      - ./app/logs:/var/log/app
+      - ./monitoring/promtail/promtail-config.yml:/etc/promtail/config.yml
+    command: -config.file=/etc/promtail/config.yml
+    networks:
+      - monitoring
+
+  health_check:
+    build:
+      context: .
+      dockerfile: health.Dockerfile
+    networks:
+      - monitoring
+    depends_on:
+      - app
+
+networks:
+  monitoring:
+    driver: bridge
