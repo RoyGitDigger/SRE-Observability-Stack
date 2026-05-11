@@ -2,7 +2,7 @@
 
 A full-stack observability pipeline implementing the **Prometheus + Grafana + Loki** stack. This project mirrors production-grade SRE (Site Reliability Engineering) workflows for monitoring cloud infrastructure and responding to security incidents.
 
-## 🚀 Overview
+##  Overview
 
 This repository contains a containerized environment that simulates a microservice with:
 - **Metrics Scraping**: Prometheus pulls time-series data from a Flask `/metrics` endpoint.
@@ -10,7 +10,7 @@ This repository contains a containerized environment that simulates a microservi
 - **Visual Analytics**: Grafana dashboards for unified observability (Metrics + Logs).
 - **Automated Health Checks**: A Python-based external probe that simulates uptime monitoring.
 
-## 🏗️ Architecture
+##  Architecture
 
 - **Flask App**: The core service generating metrics (CPU, Memory, Request counts) and structured logs.
 - **Prometheus**: Time-series database for monitoring performance SLIs (Service Level Indicators).
@@ -18,7 +18,7 @@ This repository contains a containerized environment that simulates a microservi
 - **Grafana**: The visualization layer, pre-configured with Prometheus and Loki data sources.
 - **Promtail**: The agent that captures logs from the application and pushes them to Loki.
 
-## 🛠️ Getting Started
+##  Getting Started
 
 ### Prerequisites
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running.
@@ -38,7 +38,7 @@ This repository contains a containerized environment that simulates a microservi
    - **Prometheus**: [http://localhost:9090](http://localhost:9090)
    - **App Metrics**: [http://localhost:5000/metrics](http://localhost:5000/metrics)
 
-## 🛡️ Security & Incident Response
+##  Security & Incident Response
 The stack is designed to detect brute-force attacks via the `/login` endpoint. When multiple authentication failures occur, they are logged as structured JSON and can be visualized/alerted in Grafana using LogQL.
 
 See [docs/incident_response.md](./docs/incident_response.md) for the SRE triage playbook.
